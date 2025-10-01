@@ -11,12 +11,12 @@
 / {
   behaviors {
     gui_ent: gui_ent {
-       compatible = "zmk,behavior-tap-dance";
-       label = "GUI_ENTER";
-       #binding-cells = <0>;
-       tapping-term-ms = <200>;
-       bindings = <&kp LGUI>, <&kp RET>;
-     };
+      compatible = "zmk,behavior-tap-dance";
+      label = "GUI_ENTER";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&kp LGUI>, <&kp RET>;
+    };
   };
 
   keymap {
@@ -29,7 +29,7 @@
         &kp ESC    &kp A     &kp S     &kp D    &kp F      &kp G     &kp H   &kp J     &kp K      &kp L     &kp SEMI    &kp SQT
         &kp LSHFT  &kp Z     &kp X     &kp C    &kp V      &kp B     &kp N   &kp M     &kp COMMA  &kp DOT   &kp FSLH    &mt RSHFT RET
         &kp LCTRL  &kp LALT  &gui_ent  &mo 1    &kp SPACE  &none     &none   &kp BSPC  &mo 2      &kp RALT  &kp C_MUTE  &kp RSHFT
-        >;
+      >;
       sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
     };
 
@@ -40,7 +40,7 @@
         &trans     &kp KP_MINUS  &kp N4  &kp N5  &kp N6  &kp PLUS   &trans  &trans    &kp LPAR  &kp RPAR  &kp UNDER  &trans
         &trans     &kp DOT       &kp N1  &kp N2  &kp N3  &kp EQUAL  &trans  &trans    &kp LT    &kp GT    &trans     &trans
         &trans     &kp COMMA     &kp N0  &trans  &trans  &trans     &trans  &trans    &trans    &trans    &trans     &trans
-        >;
+      >;
       sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
     };
 
@@ -51,8 +51,28 @@
         &trans      &kp KP_MINUS  &kp END        &kp PG_DN      &kp HOME      &trans        &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT     &kp UNDER     &trans
         &trans      &trans        &kp DEL        &trans         &trans        &kp LC(LEFT)  &trans    &trans     &kp C_RW  &kp C_FF      &kp C_PP      &trans
         &trans      &trans        &trans         &trans         &trans        &trans        &trans    &trans     &trans    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE
-        >;
+      >;
       sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+    };
+
+    adjust_layer {
+      bindings = <
+        &sys_reset &bootloader  &none   &none   &none   &kp A   &none   &none   &none   &none   &none   &none
+        &none      &none        &none   &none   &none   &none   &none   &none   &none   &none   &none   &none
+        &none      &none        &none   &none   &none   &none   &none   &none   &none   &none   &none   &none
+        &none      &none        &none   &none   &none   &none   &none   &none   &none   &none   &none   &none
+        &none      &none        &none   &none   &none   &none   &none   &none   &none   &none   &none   &none
+      >;
+    };
+  };
+
+  combos {
+    compatible = "zmk,combos";
+
+    combo_adjust {
+      timeout-ms = <50>;
+      key-positions = <51 56>;   // Lower (&mo 1) and Raise (&mo 2)
+      bindings = <&mo 3>;        // Activate adjust_layer
     };
   };
 };
